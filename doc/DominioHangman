@@ -1,0 +1,15 @@
+@startuml
+object Hangman
+object Player
+object Dice
+object GoalPlayer
+object GuessWord
+object WriteWord
+
+Hangman *--> "2" Player
+Hangman *--> "2" Dice
+
+Player o--> GoalPlayer
+GoalPlayer ..> GuessWord
+GoalPlayer ..> WriteWord
+@enduml

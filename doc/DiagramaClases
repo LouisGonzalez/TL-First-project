@@ -1,0 +1,169 @@
+@startuml
+class Program {
+	Player[] players = new Player[10]
+    void showMenu()
+    
+}
+
+package artifacts {
+	
+    class Dice {
+    	void throwDice()
+    }
+}
+
+package repository {
+
+	class PlayerRepo {
+		void createPlayer()
+    	void readPlayer(Player pl)
+    	void updatePlayer(Player pl)
+    	void deletePlayer(Player pl)
+	}
+
+}
+
+
+package Statistics {
+
+	class GameStatistics {
+	}
+
+	class PlayerStatistics {
+    }
+}
+
+package games {
+
+	package ttt {
+
+	class TicTacToe {
+    	Board myBoard
+		void go()
+        void makeTurn()
+	}
+    
+    class Board {
+    	int[] myBoard
+        Player player1
+        Player player2
+        void printBoard()
+        void initialValues()
+        void isEmptySpaces()
+        void isTicTacToe()
+    }
+    
+    class VerifierTTT {
+    	void verifyWinX()
+        void verifyWinY()
+        void verifyWinXY()
+        void verifyWinYX()
+    }
+    
+    }
+
+
+	class Hangman {
+        Dice dice1
+        Dice dice2
+		void go()
+	}
+}
+
+
+package PlayerModel {
+abstract Player{
+	int totalVictories
+    int totalLoses
+    String name
+    String getType()
+}
+
+class Human {
+	void createWord()
+    void guessWord()
+    void putCoin()
+}
+
+class HumanTTT{
+	void putCoin()
+}
+
+class HumanHangman{
+	void createWord()
+    void guessWord()
+}
+
+class Bot {
+	void createWord()
+    void guessWord()
+    void putCoin()
+}
+
+class BotTTT{
+	void putCoin()
+}
+
+class BotHangman{
+	void createWord()
+    void guessWord()
+}
+
+}
+
+package interfaceGames {
+
+	interface IPlayerHangman{
+		void createWord()
+    	void guessWord()
+	}
+
+	interface IPlayerTTT{
+		void putCoin()
+	}
+	
+    interface IGame {
+		void go()
+	}
+
+}
+
+package utils {
+	
+    class Terminal {
+    	void askNumber()
+        void askString()
+        void showMessage()
+    }
+
+}
+
+Program *--> TicTacToe
+Program *--> Hangman
+Program *--> Player
+Program *--> PlayerRepo
+Program *--> PlayerStatistics
+Program *--> GameStatistics
+Program ..> Terminal
+
+Player <|-- Human
+Player <|-- Bot
+
+Hangman *--> Dice
+
+IPlayerTTT --|> Human
+IPlayerTTT --|> Bot
+IPlayerHangman --|> Human
+IPlayerHangman --|> Bot
+
+HumanTTT --|> Human
+HumanHangman --|> Human
+BotTTT --|> Bot
+BotHangman --|> Bot
+
+IGame --|> TicTacToe
+IGame --|> Hangman
+
+TicTacToe *--> Board
+Board *--> VerifierTTT
+@enduml

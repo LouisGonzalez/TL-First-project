@@ -1,0 +1,39 @@
+@startuml
+object TicTacToe
+object Player
+object Turn
+object Round
+object Board
+object Square
+object GoalPlayer
+object moveCoin
+object GoalBoard
+object VerifyWin
+object PrintBoard
+object 0
+object 1
+object 2
+
+TicTacToe *--> "2" Player
+TicTacToe *--> Board
+Board *--> "3x3" Square
+Square <|-- 0
+Square <|-- 1
+Square <|-- 2
+
+TicTacToe *--> Round
+Round *--> "2" Turn
+Turn *--> Player
+
+Player o--> GoalPlayer
+Player *--> Square
+
+GoalPlayer ..> moveCoin
+moveCoin ..> Square
+
+Board o--> GoalBoard
+GoalBoard ..> PrintBoard
+GoalBoard ..> VerifyWin
+
+VerifyWin .. Player
+@enduml

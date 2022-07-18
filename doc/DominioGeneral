@@ -1,0 +1,40 @@
+@startuml
+object Game
+object Menu
+
+object Player
+object Human
+object Bot
+
+object Administrator
+object PlayerStatistics
+object GameStatistics
+object TicTacToe
+object HangMan
+
+object GoalAdmin
+object CRUDPlayer
+
+
+
+Game *--> Menu
+Game *--> "10" Player
+Game *--> Dice
+
+Player <|-- Bot
+Player <|-- Human
+
+Menu *--> Administrator
+Menu *--> PlayerStatistics
+Menu *--> GameStatistics
+Menu *--> TicTacToe
+Menu *--> HangMan
+
+Administrator o--> GoalAdmin
+GoalAdmin ..> CRUDPlayer
+CRUDPlayer ..> Player
+
+PlayerStatistics ..> Player
+
+GameStatistics ..> Game
+@enduml
